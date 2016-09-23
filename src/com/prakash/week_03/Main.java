@@ -8,23 +8,18 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // write your code here
-        System.out.println("Hello Week 3");
+        System.out.println("Hello Week 3 exercise ");
         boolean doneFlag = false;
-        String inString;
-        Scanner scanner = new Scanner(System.in);
         double keyInput;
         while (! doneFlag)
         {
             displayMenu();
-            inString = scanner.nextLine();
-            keyInput = Double.parseDouble(inString);
-            if (keyInput == -460) {
+            if ((keyInput = getKey()) == -460.0) {
                 doneFlag = true;
                 break;
             }
             else
                 System.out.println("Fahrenheit " + keyInput + " is Celsius " + celsius(keyInput));
-
         } // end of while (! doneFlag)
         System.out.println("Bye Bye, Week 3!");
 
@@ -37,5 +32,10 @@ public class Main {
     public static double celsius(double fahrenheit) {
         return ((fahrenheit-32)*5/9);
     }
-
+    public static double getKey(){
+        String inString;
+        Scanner scanner = new Scanner(System.in);
+        inString = scanner.nextLine();
+        return (Double.parseDouble(inString));
+    }
 }
