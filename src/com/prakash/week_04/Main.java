@@ -25,13 +25,14 @@ public class Main {
         } // end of while
         temperatureMap = getTemperatures(cities);
         for (String city:cities) {
-            System.out.println("Average temperature for City " + city + "is:");
+            System.out.println("Average temperature for City " + city + " is:");
             int [] tempArray = temperatureMap.get(city);
-            int avg = 0;
+            double avg = 0;
             for (int i=0;i<tempArray.length;i++){
                 avg+=tempArray[i];
+                // System.out.println("city "+ city + " temp "+ i + " is "+ tempArray[i]);
             }
-            avg = avg/(tempArray.length+1);
+            avg = avg/(tempArray.length);
             System.out.println("average: "+ avg);
         }
     }
@@ -47,6 +48,7 @@ public class Main {
 
             for (int i=0; i<tempStringArray.length;i++) {
                 tempArray[i] = Integer.parseInt(tempStringArray[i]);
+                System.out.println("city "+ city + " temp "+ i + " is "+ tempArray[i]);
             }
             temperatureMap.put (city, tempArray);
         }
