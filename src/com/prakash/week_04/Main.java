@@ -40,12 +40,11 @@ public class Main {
         Map<String, int[]> temperatureMap = new TreeMap<>();
         Scanner scanner = new Scanner(System.in);
         String keyInput;
-        int [] tempArray = new int[5];
         for (String city:cities) {
+            int [] tempArray = new int[5];
             System.out.println("Enter temperatures for City:" + city);
             keyInput = scanner.nextLine();
             String [] tempStringArray = keyInput.split(" ");
-
             for (int i=0; i<tempStringArray.length;i++) {
                 tempArray[i] = Integer.parseInt(tempStringArray[i]);
                 System.out.println("city "+ city + " temp "+ i + " is "+ tempArray[i]);
