@@ -61,14 +61,6 @@ class ContactCollection implements Iterable<Contact> {
                 throw new NoSuchElementException();
             }
         }
-        @Override
-        public void remove() {
-            if (here < contactsList.size()) {
-                contactsList.remove(here);
-            } else {
-                throw new UnsupportedOperationException();
-            }
-        }
     }
 }
 public class Main {
@@ -76,8 +68,8 @@ public class Main {
         Contact bob = new Contact("bob", "bob@bob.com");
         Contact arthur = new Contact("arthur", "arthur@arthur.com");
         Contact arthur2 = new Contact("arthur2", "aarthur@arthur.com");
-        Contact prakash = new Contact("prakash", "prakash1@prakash1.com");
-        Contact prakash2 = new Contact("prakash2", "prakash2@prakash1.com");
+        Contact prakash = new Contact("prakash", "prakash1@prakash.com");
+        Contact prakash2 = new Contact("prakash2", "prakash2@prakash.com");
         ContactCollection contactColl = new ContactCollection();
         Iterator<Contact> it = contactColl.iterator();
         contactColl.add(bob);
