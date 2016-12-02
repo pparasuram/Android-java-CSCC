@@ -1,6 +1,16 @@
 package com.prakash.Project3_v1;
 
+import java.io.*;
 import java.util.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by PARASUP on 11/23/2016. Project 3
@@ -33,6 +43,9 @@ class TaskList implements Iterable<Task> {
     public void sort() {
         Collections.sort(taskList);
     }
+    public void clear () {
+        taskList.clear();
+    }
 }
 class Task implements Comparable {
     // title, description, and priority
@@ -44,7 +57,11 @@ class Task implements Comparable {
         description = Main.getStringKeyInput("Enter the new task's description.");
         priority = Main.getPriorityIntegerKeyInput("Enter the new task's priority");
     }
-
+    Task(String title, String description, int priority){
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+    }
     public int getPriority() {
         return priority;
     }
@@ -67,7 +84,7 @@ class Task implements Comparable {
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static String keyInput;
-    public static int MAXKEYINPUT = 6;
+    public static int MAXKEYINPUT = 8;
     public static int MAXPRIORITY = 5;
     public static void main(String[] args) {
         System.out.println("Welcome to Project 3");
@@ -110,25 +127,73 @@ public class Main {
     } // public static void main(String[] args)
 
     private static void readListFromFile(TaskList taskList) {
+        //
+        if (taskList.getSize() !=0){
+            taskList.clear();
+        }
+        try {
+            File file = new File("tasklist.txt");
+            // create the file if it doesn't exist
+            if (!file.exists()) {
+                return;
+            };
+//            FileReader fileReader = new FileReader(file.getName(), true);
+            FileReader fileReader = new FileReader(file.getName());
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String newContent;
+/*            for (Task t:taskList){
+                newContent = t.title + "::" + t.description + "::" + t.priority + System.lineSeparator();;
+                bufferWriter.write(newContent);
+            } */
+            // loop through lines and add to taskList
+            while ( (newContent = bufferedReader.readLine()) != null ) {
+                // do something
+                String[] tokens = newContent.split("::");
+                int i = 0;
+                String title ="", description="";
+                int priority=0;
+                for (String token:tokens){
+                    switch (i) {
+                        case 0: title = token;
+                            break;
+                        case 1: description = token;
+                            break;
+                        case 2: priority = Integer.parseInt(token);
+                            break;
+                    }
+                    i++;
+                }
+                Task t = new Task(title, description, priority);
+                taskList.add(t);
+            }
+            bufferedReader.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        //
+
     }
 
     private static void writeListToFile(TaskList taskList) {
         //
         try {
-            File file = new File("news.txt");
-
+            File file = new File("tasklist.txt");
             // create the file if it doesn't exist
             if (!file.exists()) {
                 file.createNewFile();
             }
-
-            // combine title, content, and new line characters
-            String newContent = item.getTitle() + ": " + item.getContent() + System.lineSeparator();
-
-            // write to the file - this is one of many ways to append data to a file
+            else {
+                file.delete();
+                file.createNewFile();
+            }
             FileWriter fileWriter = new FileWriter(file.getName(), true);
             BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
-            bufferWriter.write(newContent);
+            String newContent;
+            for (Task t:taskList){
+                newContent = t.title + "::" + t.description + "::" + t.priority + System.lineSeparator();;
+                bufferWriter.write(newContent);
+            }
             bufferWriter.close();
         }
         catch (IOException e) {
@@ -248,6 +313,8 @@ public class Main {
         System.out.println("4) List all tasks.");
         System.out.println("5) List all tasks of a certain priority.");
         System.out.println("6) Sort all tasks.");
+        System.out.println("7) Write tasks to File.");
+        System.out.println("8) Read tasks from File.");
         System.out.println("0) Exit.");
     } // public static void displayMenu()
 } // public class Main

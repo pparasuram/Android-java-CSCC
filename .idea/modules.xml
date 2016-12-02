@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Android-java-1.iml" filepath="$PROJECT_DIR$/Android-java-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Json.iml" filepath="$PROJECT_DIR$/Json.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.prakash.iml" filepath="$PROJECT_DIR$/.idea/modules/com.prakash.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.prakash_main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.prakash_main.iml" group="com.prakash" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.prakash_test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.prakash_test.iml" group="com.prakash" />
     </modules>
   </component>
 </project>
