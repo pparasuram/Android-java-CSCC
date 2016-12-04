@@ -48,7 +48,6 @@ class AccountHolder implements Runnable {
             synchronized(account)  {
                 System.out.println(name + " tries to withdraw $10, balance: " +
                         account.withdraw(10));
-                System.out.println("out of run");
             }
         }
 
