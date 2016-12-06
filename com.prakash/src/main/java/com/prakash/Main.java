@@ -17,7 +17,7 @@ class Forecast{
 
     @Override
     public String toString() {
-        String returnValue = "The forecast for " + name + " is:";
+        String returnValue = "The forecast for " + name + " is:" + "Prakash";
         for (Double temperature:forecast){
 
         }
@@ -27,13 +27,13 @@ class Forecast{
 public class Main {
     public static void  main(String[] args){
         System.out.println("Hello World!");
-        String jsonData = "{\n + " +
+        String jsonData = "{" +
                 "       \"name\": \"columbus\", " +
                 "        \"forecast\": " +
                 "[40, 50, 65, 60, 70]" +
                 "}";
         JsonParser jsonParser = new JsonParser();
-        JsonObject jsonObject = JsonParser.parse(jsonData).getAsJsonObject();
+        JsonObject jsonObject = jsonParser.parse(jsonData).getAsJsonObject();
         for (Map.Entry<String,JsonElement>entry: jsonObject.entrySet()){
             if(entry.getValue().isJsonArray()){
                 // value is an array
