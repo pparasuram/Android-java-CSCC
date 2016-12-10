@@ -44,7 +44,7 @@ public class Main {
             }
             else
             {
-                System.out.println();
+                System.out.println(entry.getKey() + " has value "+ entry.getKey());
             }
         }
     }
