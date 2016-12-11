@@ -259,7 +259,10 @@ public class Main {
     public static void main(String[] args) {
         TodoAPIWrapper todoAPI = new TodoAPIWrapper("prakash", "prakash",
                 "http://todo.eastus.cloudapp.azure.com/todo-android");
+        // clean up todos
 
+        for (int i = 4; i <=20; i++ )
+            todoAPI.removeTodo(i);
         // create two todos
         System.out.println("Adding todos");
         todoAPI.createTodo("Study", "Study for exam", 2);
@@ -288,8 +291,8 @@ public class Main {
 
         System.out.println("Updating the todo 1");
 
-        updateTodo.setBody("Body build");
-        updateTodo.setTitle("Exercise body");
+        updateTodo.setBody("Body build update 1");
+        updateTodo.setTitle("Exercise body update 1");
         updateTodo.setPriority(1);
         // System.out.println(updateTodo);
         updateTodo = todoAPI.updateTodo(updateTodo);
