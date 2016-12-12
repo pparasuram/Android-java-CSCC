@@ -55,7 +55,7 @@ class HttpRequests {
 
 public class Main {
     public static void main(String[] args) {
-        HttpRequests requests = new HttpRequests("arthur", "arthur");
+        HttpRequests requests = new HttpRequests("prakash", "prakash");
         try {
             System.out.println(
                     requests.get("http://todo.eastus.cloudapp.azure.com/todo-android/todos/api/v1.0/todos"));
